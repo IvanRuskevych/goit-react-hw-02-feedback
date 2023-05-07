@@ -1,25 +1,30 @@
-import React from 'react';
-
-export default function FeedbackOptions({
-  good,
-  bad,
-  neutral,
-  onLeaveFeedback,
-}) {
+export default function FeedbackOptions({ options, onLeaveFeedback }) {
+  console.log(Object.entries(options));
   return (
     <>
-      <button type="button" name="good" onClick={onLeaveFeedback} value={good}>
+      <button
+        type="button"
+        name="good"
+        value={options.good}
+        onClick={onLeaveFeedback}
+      >
         Good
       </button>
       <button
         type="button"
         name="neutral"
-        value={neutral}
+        value={options.neutral}
         onClick={onLeaveFeedback}
       >
         Neutral
       </button>
-      <button type="button" name="bad" value={bad} onClick={onLeaveFeedback}>
+
+      <button
+        type="button"
+        name="bad"
+        value={options.bad}
+        onClick={onLeaveFeedback}
+      >
         Bad
       </button>
     </>

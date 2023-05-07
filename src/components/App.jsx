@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Statistics from './Statistics/Statistics';
-// import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 
 class App extends Component {
   state = {
@@ -10,10 +10,15 @@ class App extends Component {
     bad: 0,
   };
 
+  options = () => {
+    console.log(Object.keys(this.state));
+  };
+
   handleClick = e => {
     // console.log(e.currentTarget.name);
+    const { name, value } = e.currentTarget;
     this.setState({
-      [e.currentTarget.name]: Number(e.currentTarget.value) + 1,
+      [name]: Number(value) + 1,
     });
   };
 
@@ -30,38 +35,16 @@ class App extends Component {
   render() {
     const { bad, neutral, good } = this.state;
     const total = this.countTotalFeedback();
-
+    // const options = Object.keys(this.state);
     const positivePercentage = this.countPositiveFeedbackPercentage();
-
+    // console.log(Object.keys(this.state));
     return (
       <>
         <p>Please leave feedback</p>
-        {/* <FeedbackOptions
+        <FeedbackOptions
           options={this.state}
           onLeaveFeedback={this.handleClick}
-        /> */}
-
-        <button
-          type="button"
-          name="good"
-          onClick={this.handleClick}
-          value={good}
-        >
-          Good
-        </button>
-
-        <button
-          type="button"
-          name="neutral"
-          value={neutral}
-          onClick={this.handleClick}
-        >
-          Neutral
-        </button>
-
-        <button type="button" name="bad" value={bad} onClick={this.handleClick}>
-          Bad
-        </button>
+        />
 
         <Statistics
           good={good}
