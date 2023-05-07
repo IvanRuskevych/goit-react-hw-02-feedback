@@ -9,7 +9,6 @@ export default function Statistics({
 }) {
   return (
     <ul>
-      Statistics
       <li>Good: {good}</li>
       <li>Neutral: {neutral}</li>
       <li>Bad: {bad}</li>

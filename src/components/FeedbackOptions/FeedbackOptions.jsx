@@ -1,32 +1,30 @@
-export default function FeedbackOptions({ options, onLeaveFeedback }) {
-  console.log(Object.entries(options));
-  return (
-    <>
-      <button
-        type="button"
-        name="good"
-        value={options.good}
-        onClick={onLeaveFeedback}
-      >
-        Good
-      </button>
-      <button
-        type="button"
-        name="neutral"
-        value={options.neutral}
-        onClick={onLeaveFeedback}
-      >
-        Neutral
-      </button>
+import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
-      <button
-        type="button"
-        name="bad"
-        value={options.bad}
-        onClick={onLeaveFeedback}
-      >
-        Bad
-      </button>
-    </>
+function FeedbackOptions({ options, onLeaveFeedback }) {
+  const stateKeys = Object.keys(options);
+  return (
+    <ul>
+      {stateKeys.map(state => {
+        return (
+          <li key={nanoid(5)}>
+            <button
+              type="button"
+              name={state}
+              onClick={() => onLeaveFeedback(state)}
+            >
+              {state}
+            </button>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
+
+export default FeedbackOptions;
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.objectOf(PropTypes.number.isRequired).isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
