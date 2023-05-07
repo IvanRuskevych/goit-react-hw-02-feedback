@@ -1,7 +1,9 @@
+import css from './Section.module.css';
+
 function Section({ titleText = '', children }) {
   return (
-    <section className="section">
-      <h2 className="title">{titleText}</h2>
+    <section className={css.section}>
+      <h2 className={css.sectionTitle}>{titleText}</h2>
       {children}
     </section>
   );
